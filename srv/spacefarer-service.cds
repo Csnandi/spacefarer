@@ -18,13 +18,12 @@ service SpacefarerService @(requires: 'authenticated-user') {
     }
     @Capabilities.TopSupported: true
     @Capabilities.SkipSupported: true
-    // ADD THIS: Define table columns
-    @UI.lineItem: [
-        { Value: name },
-        { Value: stardustCollection },
-        { Value: department_ID },
-        { Value: position_ID }
-    ]
+    @Capabilities.InsertRestrictions: { Insertable: false }
+    @restrict: [{
+        grant: '*',
+        where: 'originPlanet = $user.originPlanet'
+    }]
+
     entity Spacefarers as projection on my.Spacefarer;
 
     @readonly

@@ -5,27 +5,27 @@ annotate service.Spacefarers with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'name',
+                Label : 'Name',
                 Value : name,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'stardustCollection',
+                Label : 'Stardust Collection',
                 Value : stardustCollection,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'wormholeNavigationSkill',
+                Label : 'Wormhole Navigation Skill',
                 Value : wormholeNavigationSkill,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'originPlanet',
+                Label : 'Origin Planet',
                 Value : originPlanet,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'spacesuitColor',
+                Label : 'Spacesuit Color',
                 Value : spacesuitColor,
             },
         ],
@@ -48,16 +48,6 @@ annotate service.Spacefarers with @(
             $Type : 'UI.DataField',
             Label : 'Stardust Collection',
             Value : stardustCollection,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Wormhole Navigation Skill',
-            Value : wormholeNavigationSkill,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'Origin Planet',
-            Value : originPlanet,
         },
         {
             $Type : 'UI.DataField',
@@ -117,5 +107,13 @@ annotate service.Spacefarers with {
 
 annotate service.Spacefarers with {
     name @Common.FieldControl : #ReadOnly
+};
+
+annotate service.Spacefarers with {
+    wormholeNavigationSkill @Common.FieldControl : #ReadOnly
+};
+
+annotate service.Spacefarers with {
+    originPlanet @Common.FieldControl : #ReadOnly
 };
 

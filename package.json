@@ -24,6 +24,22 @@
   },
   "cds": {
     "requires": {
+      "auth": {
+        "users": {
+          "Zorg": {
+            "password": "123",
+            "attr": {
+              "originPlanet": "Earth"
+            }
+          },
+          "Blarp": {
+            "password": "123",
+            "attr": {
+              "originPlanet": "Mars"
+            }
+          }
+        }
+      },
       "db": "sqlite",
       "db-ext": {
         "[development]": {
