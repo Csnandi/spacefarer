@@ -6,33 +6,25 @@
   "license": "UNLICENSED",
   "dependencies": {
     "@sap/cds": "^8",
+    "@sap/ux-ui5-tooling": "^1.20.2",
+    "better-sqlite3": "^12.6.2",
     "express": "^4",
-    "sqlite3": "^5"
+    "sqlite3": "^5.1.7"
   },
   "devDependencies": {
     "@sap/cds-dk": "^8",
     "@ui5/builder": "^4.1.3",
     "@ui5/cli": "^4.0.43",
-    "@ui5/project": "^4.0.9"
+    "@ui5/project": "^4.0.9",
+    "cds-plugin-ui5": "^0.13.0"
   },
   "scripts": {
-    "start": "cds-serve"
+    "start": "cds-serve",
+    "watch-project1": "cds watch --open project1/index.html?sap-ui-xx-viewCache=false --livereload false"
   },
   "cds": {
     "requires": {
       "db": "sqlite",
-      "auth": {
-        "users": {
-          "commander_zog": {
-            "roles": [
-              "authenticated-user"
-            ]
-          },
-          "alien_spy": {
-            "roles": []
-          }
-        }
-      },
       "db-ext": {
         "[development]": {
           "model": "db/sqlite"
@@ -42,5 +34,13 @@
         }
       }
     }
-  }
+  },
+  "workspaces": [
+    "app/*"
+  ],
+  "sapux": [
+    "app/project1",
+    "app/project1",
+    "app/project1"
+  ]
 }
