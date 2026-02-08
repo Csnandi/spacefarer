@@ -6,7 +6,7 @@
     "metadataFilename": "",
     "serviceUrl": "http://localhost:4004/odata/v4/service/spacefarer/",
     "appName": "project1",
-    "appTitle": "App Title",
+    "appTitle": "Galactic Spacefarer Adventure System",
     "appDescription": "An SAP Fiori application.",
     "appNamespace": "",
     "ui5Theme": "sap_horizon",

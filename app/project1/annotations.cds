@@ -10,6 +10,11 @@ annotate service.Spacefarers with @(
             },
             {
                 $Type : 'UI.DataField',
+                Label : 'Email',
+                Value : email,
+            },
+            {
+                $Type : 'UI.DataField',
                 Label : 'Stardust Collection',
                 Value : stardustCollection,
             },
@@ -43,6 +48,11 @@ annotate service.Spacefarers with @(
             $Type : 'UI.DataField',
             Label : 'Name',
             Value : name,
+        },
+        {
+            $Type : 'UI.DataField',
+            Label : 'Email',
+            Value : email,
         },
         {
             $Type : 'UI.DataField',
@@ -103,17 +113,5 @@ annotate service.Spacefarers with {
             },
         ],
     }
-};
-
-annotate service.Spacefarers with {
-    name @Common.FieldControl : #ReadOnly
-};
-
-annotate service.Spacefarers with {
-    wormholeNavigationSkill @Common.FieldControl : #ReadOnly
-};
-
-annotate service.Spacefarers with {
-    originPlanet @Common.FieldControl : #ReadOnly
 };
 

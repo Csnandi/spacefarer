@@ -4,7 +4,7 @@ using { sap.cap.spacefarer as my } from '../db/schema';
 service SpacefarerService @(requires: 'authenticated-user') {
 
     @odata.draft.enabled
-    // Updated annotation for default sorting
+    // Default sorting by stardustCollection
     @UI.PresentationVariant: {
         SortOrder: [
             {
@@ -16,9 +16,6 @@ service SpacefarerService @(requires: 'authenticated-user') {
             '@UI.LineItem'
         ]
     }
-    @Capabilities.TopSupported: true
-    @Capabilities.SkipSupported: true
-    @Capabilities.InsertRestrictions: { Insertable: false }
     @restrict: [{
         grant: '*',
         where: 'originPlanet = $user.originPlanet'

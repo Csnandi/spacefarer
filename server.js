@@ -1,18 +1,17 @@
 const cds = require('@sap/cds')
 
 cds.on('bootstrap', app => {
-  // 1. Check if we have a list of allowed users in the config
+  // Check if we have a list of allowed users in the config
   const userConfig = cds.env.requires?.auth?.users
   if (!userConfig) return
 
-  // Create a simple list of allowed usernames
   const allowedUsers = Object.keys(userConfig).map(u => u.toLowerCase())
 
   app.use((req, res, next) => {
-    // 2. Try to get the username from the request
+    // Get the username from the request
     const username = getBasicAuthUser(req)
 
-    // 3. If the user is on the list, let them through
+    // If the user is on the list, let them through
     if (username && allowedUsers.includes(username.toLowerCase())) {
       return next()
     }

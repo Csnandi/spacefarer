@@ -9,7 +9,7 @@
 |**Service Type**<br>Local CAP|
 |**Service URL**<br>http://localhost:4004/odata/v4/service/spacefarer/|
 |**Module Name**<br>project1|
-|**Application Title**<br>App Title|
+|**Application Title**<br>Galactic Spacefarer Adventure System|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.144.1|

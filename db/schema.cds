@@ -5,6 +5,7 @@ namespace sap.cap.spacefarer;
 entity Spacefarer : managed {
   key ID                       : UUID;
       name                     : String;
+      email                    : String;
       stardustCollection       : Integer;
       wormholeNavigationSkill  : Integer;
       originPlanet             : String;
