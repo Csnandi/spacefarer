@@ -8,19 +8,34 @@ module.exports = class SpacefarerService extends cds.ApplicationService {
 
         //Validate and enhance stardust collection and wormhole navigation skills.
         this.before('CREATE', Spacefarers, async (req) => {
-            const { stardustCollection, wormholeNavigationSkill } = req.data;
+            const { name, email, stardustCollection, wormholeNavigationSkill, originPlanet, spacesuitColor, department_ID, position_ID } = req.data;
+
+            // Ensure all fields are provided
+            const requiredFields = { name, email, stardustCollection, wormholeNavigationSkill, originPlanet, spacesuitColor, department_ID, position_ID };
+            for (const [key, value] of Object.entries(requiredFields)) {
+                if (value === undefined || value === null || value === '') {
+                    return req.error(400, `${key.replace('_ID', '')} is required`, key);
+                }
+            }
+
+            const { Departments, Positions } = this.entities;
+            
+            // Validate that department and position exist
+            const [dept, pos] = await Promise.all([
+                SELECT.one.from(Departments).where({ ID: department_ID }),
+                SELECT.one.from(Positions).where({ ID: position_ID })
+            ]);
+
+            if (!dept) return req.error(404, `Department with ID ${department_ID} does not exist`);
+            if (!pos) return req.error(404, `Position with ID ${position_ID} does not exist`);
 
             // Validation: Ensure wormhole navigation skill is between 1 and 10
             if (wormholeNavigationSkill < 1 || wormholeNavigationSkill > 10) {
                 return req.error(400, `Wormhole navigation skill must be between 1 and 10. Received: ${wormholeNavigationSkill}`);
             }
 
-            // Enhancement: If stardust collection is missing, give them a starting boost of 100
-            if (stardustCollection === undefined || stardustCollection === null) {
-                req.data.stardustCollection = 100;
-                console.log('Cosmic Enhancement: Initial stardust collection set to 100.');
-            } else if (stardustCollection < 50) {
-                // Boost low stardust collection to minimum 50
+            // Enhancement: Boost low stardust collection to minimum 50
+            if (stardustCollection < 50) {
                 req.data.stardustCollection += 50;
                 console.log('Cosmic Enhancement: Stardust collection boosted by 50 units.');
             }

@@ -33,6 +33,16 @@ annotate service.Spacefarers with @(
                 Label : 'Spacesuit Color',
                 Value : spacesuitColor,
             },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Department',
+                Value : department_ID,
+            },
+            {
+                $Type : 'UI.DataField',
+                Label : 'Position',
+                Value : position_ID,
+            },
         ],
     },
     UI.Facets : [
@@ -90,7 +100,9 @@ annotate service.Spacefarers with {
                 ValueListProperty : 'description',
             },
         ],
-    }
+    } @Common.ValueListWithFixedValues : true
+      @Common.Text : department.name
+      @Common.TextArrangement : #TextOnly;
 };
 
 annotate service.Spacefarers with {
@@ -112,6 +124,8 @@ annotate service.Spacefarers with {
                 ValueListProperty : 'rank',
             },
         ],
-    }
+    } @Common.ValueListWithFixedValues : true
+      @Common.Text : position.title
+      @Common.TextArrangement : #TextOnly;
 };
 
