@@ -31,8 +31,6 @@ module.exports = class SpacefarerService extends cds.ApplicationService {
             const { name, originPlanet, email } = spacefarer;
             const recipient = email || 'spacefarer@galaxy.com';
 
-            console.log(`🚀 Creating cosmic transporter for: ${name}...`);
-
             try {
                 // Create a test account for development and testing purposes
                 let testAccount = await nodemailer.createTestAccount();
