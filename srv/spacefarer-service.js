@@ -18,15 +18,15 @@ module.exports = class SpacefarerService extends cds.ApplicationService {
             // Enhancement: If stardust collection is missing, give them a starting boost of 100
             if (stardustCollection === undefined || stardustCollection === null) {
                 req.data.stardustCollection = 100;
-                console.log('✨ Cosmic Enhancement: Initial stardust collection set to 100.');
+                console.log('Cosmic Enhancement: Initial stardust collection set to 100.');
             } else if (stardustCollection < 50) {
                 // Boost low stardust collection to minimum 50
                 req.data.stardustCollection += 50;
-                console.log('✨ Cosmic Enhancement: Stardust collection boosted by 50 units.');
+                console.log('Cosmic Enhancement: Stardust collection boosted by 50 units.');
             }
         });
 
-        //Send a cosmic notification email to the newly created spacefarer using Nodemailer.
+        //Send notification email to the newly created spacefarer using Nodemailer.
         this.after('CREATE', Spacefarers, async (spacefarer, req) => {
             const { name, originPlanet, email } = spacefarer;
             const recipient = email || 'spacefarer@galaxy.com';
