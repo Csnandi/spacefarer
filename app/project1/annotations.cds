@@ -56,22 +56,18 @@ annotate service.Spacefarers with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'Name',
             Value : name,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Email',
             Value : email,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Stardust Collection',
             Value : stardustCollection,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Spacesuit Color',
             Value : spacesuitColor,
         },
     ],
@@ -127,5 +123,13 @@ annotate service.Spacefarers with {
     } @Common.ValueListWithFixedValues : true
       @Common.Text : position.title
       @Common.TextArrangement : #TextOnly;
+};
+
+annotate service.Departments with {
+    ID @UI.Hidden;
+};
+
+annotate service.Positions with {
+    ID @UI.Hidden;
 };
 

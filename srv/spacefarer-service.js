@@ -1,22 +1,30 @@
 const cds = require('@sap/cds');
 const nodemailer = require('nodemailer');
 
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const INVALID_EMAIL_MESSAGE = 'Please enter a valid email address.';
+
 module.exports = class SpacefarerService extends cds.ApplicationService {
     init() {
         const { Spacefarers } = this.entities;
+
+        this.before(['CREATE', 'UPDATE'], Spacefarers, (req) => {
+            // For non-admin users, set originPlanet to their own origin planet
+            if (!req.user.is('admin')) {
+                req.data.originPlanet = req.user.attr.originPlanet;
+            }
+
+            const { email } = req.data;
+
+            if (!EMAIL_REGEX.test(email)) {
+                return req.error(400, INVALID_EMAIL_MESSAGE, 'email');
+            }
+        });
 
 
         //Validate and enhance stardust collection and wormhole navigation skills.
         this.before('CREATE', Spacefarers, async (req) => {
             const { name, email, stardustCollection, wormholeNavigationSkill, originPlanet, spacesuitColor, department_ID, position_ID } = req.data;
-
-            // Ensure all fields are provided
-            const requiredFields = { name, email, stardustCollection, wormholeNavigationSkill, originPlanet, spacesuitColor, department_ID, position_ID };
-            for (const [key, value] of Object.entries(requiredFields)) {
-                if (value === undefined || value === null || value === '') {
-                    return req.error(400, `${key.replace('_ID', '')} is required`, key);
-                }
-            }
 
             const { Departments, Positions } = this.entities;
             

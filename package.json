@@ -43,6 +43,12 @@
             "attr": {
               "originPlanet": "Mars"
             }
+          },
+          "Admin": {
+            "password": "123",
+            "roles": [
+              "admin"
+            ]
           }
         }
       },
